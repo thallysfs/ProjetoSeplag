@@ -20,13 +20,41 @@ namespace ProjetoSeplag.WorkServices
             this.integrationUpdates = integrationUpdates;
         }
 
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            return base.StartAsync(cancellationToken);
+        }
+        public override Task StopAsync(CancellationToken cancellationToken)
+        {
+            return base.StopAsync(cancellationToken);
+        }
+
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+
             while (!stoppingToken.IsCancellationRequested)
             {
-                await this.integrationUpdates.Integrar();
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(300, stoppingToken);
+                if(!ControleExecucao.run)
+                {
+                    ControleExecucao.run = true;
+                    try
+                    {
+                        await StopAsync(stoppingToken);
+                        _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                        await this.integrationUpdates.Integrar();
+                        await Task.Delay(40000, stoppingToken);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.LogError(e.Message);
+                    }
+                    finally
+                    {
+                        await StartAsync(stoppingToken);
+                        ControleExecucao.run = false;
+                    }
+                }
             }
         }
     }

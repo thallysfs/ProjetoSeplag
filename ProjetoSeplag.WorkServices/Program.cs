@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjetoSeplag.Infra.Data.Context;
@@ -21,7 +22,8 @@ namespace ProjetoSeplag.WorkServices
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddDbContext<AplicationContext>();
+                    IConfiguration configuration = hostContext.Configuration;
+                    services.AddDbContext<AplicationContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
                     NativeInjectorBootStrapper.RegisterServices(services);
                     services.AddHostedService<Worker>();
                     

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProjetoSeplag.Infra.Data.Repository
 {
@@ -20,20 +21,40 @@ namespace ProjetoSeplag.Infra.Data.Repository
             DbSet = aplicationContext.Set<UpdateEntity>();
         }
 
-        public List<UpdateEntity> GetAll()
+        public async Task<List<UpdateEntity>> GetAll()
         {
-            return DbSet.ToList();
+            return await DbSet.ToListAsync();
         }
 
-        public UpdateEntity GetById(string Id)
+        public async Task<UpdateEntity> GetById(string Id)
         {
-            return DbSet.Find(Id);
+            return await DbSet.FindAsync(Id);
         }
 
-        public void Insert(UpdateEntity Dto)
+        public async Task Insert(UpdateEntity Dto)
         {
-            DbSet.Add(Dto);
-            aplicationContext.SaveChanges();
+            try
+            {
+                await DbSet.AddAsync(Dto);
+                await aplicationContext.SaveChangesAsync();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public async Task Update(UpdateEntity Dto)
+        {
+            try
+            {
+                DbSet.Attach(Dto);
+                await aplicationContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

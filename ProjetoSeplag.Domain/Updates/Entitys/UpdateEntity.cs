@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ProjetoSeplag.Domain.Updates.Entitys
@@ -9,7 +10,7 @@ namespace ProjetoSeplag.Domain.Updates.Entitys
         public UpdateEntity(string Id, string Alias, string DocumentTitle, string Severity,
             DateTime InitialReleaseDate, DateTime CurrentReleaseDate, Uri CvrfUrl)
         {
-            this.Id = Id;
+            this.ID = Id;
             this.Alias = Alias;
             this.DocumentTitle = DocumentTitle;
             this.Severity = Severity;
@@ -24,7 +25,8 @@ namespace ProjetoSeplag.Domain.Updates.Entitys
 
         }
 
-        public string Id { get; private set; }
+        [Key]
+        public string ID { get; private set; }
 
         public string Alias { get; private set; }
         public string DocumentTitle { get; private set; }

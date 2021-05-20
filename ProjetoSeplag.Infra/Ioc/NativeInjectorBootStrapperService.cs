@@ -19,9 +19,10 @@ namespace ProjetoSeplag.Infra.Ioc
         {
             services.AddTransient<IUpdateRepository, UpdateRepository>();
             services.AddTransient<IUpdateServices, UpdateServices>();
-            services.AddTransient<AplicationContext>();
+            //services.AddTransient<AplicationContext>();
             services.AddAutoMapper(typeof(UpdateMappingProfile));
             services.AddTransient<IIntegrationUpdates, IntegrationUpdates>();
+            services.AddHttpClient();
         }
 
 

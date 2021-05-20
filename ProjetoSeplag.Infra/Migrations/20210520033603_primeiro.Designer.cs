@@ -10,8 +10,8 @@ using ProjetoSeplag.Infra.Data.Context;
 namespace ProjetoSeplag.Infra.Migrations
 {
     [DbContext(typeof(AplicationContext))]
-    [Migration("20210519002332_primeira-migration")]
-    partial class primeiramigration
+    [Migration("20210520033603_primeiro")]
+    partial class primeiro
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace ProjetoSeplag.Infra.Migrations
 
             modelBuilder.Entity("ProjetoSeplag.Domain.Updates.Entitys.UpdateEntity", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("ID")
                         .HasColumnType("text");
 
                     b.Property<string>("Alias")
@@ -44,7 +44,7 @@ namespace ProjetoSeplag.Infra.Migrations
                     b.Property<string>("Severity")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("UpdateEntity");
                 });

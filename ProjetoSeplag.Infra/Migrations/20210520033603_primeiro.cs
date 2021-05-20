@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoSeplag.Infra.Migrations
 {
-    public partial class primeiramigration : Migration
+    public partial class primeiro : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace ProjetoSeplag.Infra.Migrations
                 name: "UpdateEntity",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "text", nullable: false),
+                    ID = table.Column<string>(type: "text", nullable: false),
                     Alias = table.Column<string>(type: "text", nullable: true),
                     DocumentTitle = table.Column<string>(type: "text", nullable: true),
                     Severity = table.Column<string>(type: "text", nullable: true),
@@ -21,7 +21,7 @@ namespace ProjetoSeplag.Infra.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UpdateEntity", x => x.Id);
+                    table.PrimaryKey("PK_UpdateEntity", x => x.ID);
                 });
         }
 

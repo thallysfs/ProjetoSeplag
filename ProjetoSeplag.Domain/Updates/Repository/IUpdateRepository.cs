@@ -2,16 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProjetoSeplag.Domain.Updates.Repository
 {
     public interface IUpdateRepository
     {
-        void Insert(UpdateEntity Dto);
+        Task Insert(UpdateEntity Dto);
 
-        UpdateEntity GetById(string Id);
+        Task<UpdateEntity> GetById(string Id);
 
-        List<UpdateEntity> GetAll();
+        Task<List<UpdateEntity>> GetAll();
+
+        Task Update(UpdateEntity Dto);
 
     }
 }

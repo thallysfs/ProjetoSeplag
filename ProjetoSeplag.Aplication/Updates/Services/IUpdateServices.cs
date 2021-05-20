@@ -2,19 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProjetoSeplag.Aplication.Updates.Services
 {
     public interface IUpdateServices
     {
-        void Insert(UpdatesDto Dto);
+        Task Insert(UpdatesDto Dto);
 
-        UpdatesDto GetById(string Id);
+        Task<UpdatesDto> GetById(string Id);
 
-        List<UpdatesDto> GetAll();
+        Task<List<ValuesDto>> GetAll();
+
+        Task Update(UpdatesDto Dto);
 
 
-            
+
 
     }
 }

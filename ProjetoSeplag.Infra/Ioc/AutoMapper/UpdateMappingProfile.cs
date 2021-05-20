@@ -12,7 +12,7 @@ namespace ProjetoSeplag.Services.AutoMapper
         public UpdateMappingProfile()
         {
             CreateMap<UpdateEntity, ValuesDto>().ReverseMap().ConstructUsing(e => new UpdateEntity(
-                e.Id,
+                e.ID,
                 e.Alias,
                 e.DocumentTitle,
                 e.Severity,
@@ -20,6 +20,7 @@ namespace ProjetoSeplag.Services.AutoMapper
                 e.CurrentReleaseDate,
                 e.CvrfUrl
                 ));
+
         }
     }
 }

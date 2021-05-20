@@ -19,7 +19,7 @@ namespace ProjetoSeplag.Infra.Ioc
         {
             services.AddScoped<IUpdateRepository, UpdateRepository>();
             services.AddScoped<IUpdateServices, UpdateServices>();
-            services.AddScoped<AplicationContext>();
+            //services.AddScoped<AplicationContext>();
             services.AddAutoMapper(typeof(UpdateMappingProfile));
             services.AddScoped<IIntegrationUpdates, IntegrationUpdates>();
         }

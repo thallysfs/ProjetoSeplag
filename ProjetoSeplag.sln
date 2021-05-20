@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoSeplag.Infra", "Proj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoSeplag.Api", "ProjetoSeplag.Api\ProjetoSeplag.Api.csproj", "{FA80C579-5C9F-48C4-8C00-F63913FA0996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoSeplag.WorkServices", "ProjetoSeplag.WorkServices\ProjetoSeplag.WorkServices.csproj", "{6CB364AA-7290-4682-B8C0-F33BDBE4A667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoSeplag.WorkServices", "ProjetoSeplag.WorkServices\ProjetoSeplag.WorkServices.csproj", "{6CB364AA-7290-4682-B8C0-F33BDBE4A667}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

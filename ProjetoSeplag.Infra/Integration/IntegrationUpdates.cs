@@ -13,36 +13,37 @@ namespace ProjetoSeplag.Infra.Integration
     public class IntegrationUpdates : IIntegrationUpdates
     {
         private readonly IUpdateServices updateServices;
-        private readonly IHttpClientFactory httpClientFactory;
+        private readonly HttpClient httpClient;
         private readonly ILogger<IntegrationUpdates> logger;
 
-        public IntegrationUpdates(IUpdateServices updateServices, IHttpClientFactory httpClientFactory, ILogger<IntegrationUpdates> logger)
+        public IntegrationUpdates(IUpdateServices updateServices, ILogger<IntegrationUpdates> logger)
         {
             this.updateServices = updateServices;
-            this.httpClientFactory = httpClientFactory;
+            this.httpClient = new HttpClient();
             this.logger = logger;
         }
 
         public async Task Integrar()
         {
-            this.logger.LogInformation("Entrei");
+            this.logger.LogInformation("Início de execução");
 
-            var request = new HttpRequestMessage(HttpMethod.Get,"https://api.msrc.microsoft.com/cvrf/v2.0/updates");
-                request.Headers.Add("Accept", "application/json");
-            var client = httpClientFactory.CreateClient();
-            var response = await client.SendAsync(request);
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
 
-            if(response.IsSuccessStatusCode)
+            var response = await httpClient.GetAsync("https://api.msrc.microsoft.com/cvrf/v2.0/updates");
+
+            if (response.IsSuccessStatusCode)
             {
-                using var responseStream = await response.Content.ReadAsStreamAsync();
-                updateServices.Insert(await JsonSerializer.DeserializeAsync<UpdatesDto>(responseStream));
+                var responseStream = await response.Content.ReadAsStringAsync();
+                var dto = JsonSerializer.Deserialize<UpdatesDto>(responseStream);
+                await updateServices.Insert(dto);
+                this.logger.LogInformation("Registros inseridos com sucesso!");
+
             }
             else
             {
                 this.logger.LogError($"Erro ao acessar api {await response.Content.ReadAsStringAsync()}");
             }
-
-            
+                
         }
     }
 }

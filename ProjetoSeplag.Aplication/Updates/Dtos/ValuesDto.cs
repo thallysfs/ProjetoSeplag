@@ -9,7 +9,7 @@ namespace ProjetoSeplag.Aplication.Updates.Dtos
     public class ValuesDto
     {
         [JsonProperty("ID")]
-        public string Id { get; set; }
+        public string ID { get; set; }
 
         [JsonProperty("Alias")]
         public string Alias { get; set; }

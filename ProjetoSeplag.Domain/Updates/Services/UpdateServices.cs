@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProjetoSeplag.Domain.Updates.Services
 {
@@ -21,22 +22,45 @@ namespace ProjetoSeplag.Domain.Updates.Services
             this.mapper = mapper;
         }
 
-        public List<UpdatesDto> GetAll()
+        public async Task<List<ValuesDto>> GetAll()
         {
-            return mapper.Map<List<UpdatesDto>>(updateRepository.GetAll());
+            var lista = await updateRepository.GetAll();
+            return mapper.Map<List<ValuesDto>>(lista);
         }
 
-        public UpdatesDto GetById(string Id)
+        public async Task<UpdatesDto> GetById(string Id)
         {
-            return mapper.Map<UpdatesDto>(updateRepository.GetById(Id));
+            var dto = await updateRepository.GetById(Id);
+            return mapper.Map<UpdatesDto>(dto);
         }
 
-        public void Insert(UpdatesDto Dto)
+        public async Task Insert(UpdatesDto Dto)
         {
-            foreach (var item in Dto.Value)
+            foreach (var item in Dto.value)
             {
-                updateRepository.Insert(mapper.Map<UpdateEntity>(item));
+                try
+                {
+                    //var entity = await GetById(item.ID);
+                    //if (entity != null)
+                    //{
+                    //    await updateRepository.Update(mapper.Map<UpdateEntity>(item));
+                    //}
+                    //else
+                    //{
+                        await updateRepository.Insert(mapper.Map<UpdateEntity>(item));
+                    //}
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
             }
+        }
+
+        public async Task Update(UpdatesDto Dto)
+        {
+            await updateRepository.Update(mapper.Map<UpdateEntity>(Dto));
         }
     }
 }

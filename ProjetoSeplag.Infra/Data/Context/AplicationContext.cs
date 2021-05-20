@@ -20,11 +20,11 @@ namespace ProjetoSeplag.Infra.Data.Context
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=seplagdb;User Id=postgres;Password=docker;");
-            base.OnConfiguring(optionsBuilder);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=seplagdb;User Id=postgres;Password=docker;");
+        //    base.OnConfiguring(optionsBuilder);
+        //}
 
         public DbSet<UpdateEntity> UpdateEntity { get; set; }
 

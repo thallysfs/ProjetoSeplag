@@ -11,11 +11,8 @@ namespace ProjetoSeplag.Aplication.Updates.Dtos
 
     public partial class UpdatesDto
     {
-        [JsonProperty("@odata.context")]
-        public Uri OdataContext { get; set; }
-
         [JsonProperty("value")]
-        public List<ValuesDto> Value { get; set; }
+        public List<ValuesDto> value { get; set; }
     }
 
 }

@@ -21,7 +21,7 @@ namespace ProjetoSeplag.Infra.Migrations
 
             modelBuilder.Entity("ProjetoSeplag.Domain.Updates.Entitys.UpdateEntity", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("ID")
                         .HasColumnType("text");
 
                     b.Property<string>("Alias")
@@ -42,7 +42,7 @@ namespace ProjetoSeplag.Infra.Migrations
                     b.Property<string>("Severity")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("UpdateEntity");
                 });
