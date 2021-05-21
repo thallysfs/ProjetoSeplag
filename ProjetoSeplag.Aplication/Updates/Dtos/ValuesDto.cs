@@ -5,7 +5,6 @@ using System.Text;
 
 namespace ProjetoSeplag.Aplication.Updates.Dtos
 {
- 
     public class ValuesDto
     {
         [JsonProperty("ID")]

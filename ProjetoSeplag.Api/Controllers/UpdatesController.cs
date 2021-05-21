@@ -20,9 +20,9 @@ namespace ProjetoSeplag.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetUpdates()
+        public async Task<IActionResult> GetUpdates()
         {
-            return Ok(updateServices.GetAll());
+            return Ok(await updateServices.GetAll());
         }
 
 

@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>dotnet-ProjetoSeplag.WorkServices-70E9F91B-63A1-47BA-9745-72764282AFB8</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileRunArguments>--network=my-bridge-network</DockerfileRunArguments>
+    <DockerfileRunArguments>--network=projetoseplag_my-network</DockerfileRunArguments>
   </PropertyGroup>
 
   <ItemGroup>

@@ -28,10 +28,10 @@ namespace ProjetoSeplag.Domain.Updates.Services
             return mapper.Map<List<ValuesDto>>(lista);
         }
 
-        public async Task<UpdatesDto> GetById(string Id)
+        public async Task<ValuesDto> GetById(string Id)
         {
             var dto = await updateRepository.GetById(Id);
-            return mapper.Map<UpdatesDto>(dto);
+            return mapper.Map<ValuesDto>(dto);
         }
 
         public async Task Insert(UpdatesDto Dto)
@@ -40,15 +40,15 @@ namespace ProjetoSeplag.Domain.Updates.Services
             {
                 try
                 {
-                    //var entity = await GetById(item.ID);
-                    //if (entity != null)
-                    //{
-                    //    await updateRepository.Update(mapper.Map<UpdateEntity>(item));
-                    //}
-                    //else
-                    //{
+                    var entity = await GetById(item.ID);
+                    if (entity != null)
+                    {
+                        await updateRepository.Update(mapper.Map<UpdateEntity>(item));
+                    }
+                    else
+                    {
                         await updateRepository.Insert(mapper.Map<UpdateEntity>(item));
-                    //}
+                    }
                 }
                 catch(Exception e)
                 {

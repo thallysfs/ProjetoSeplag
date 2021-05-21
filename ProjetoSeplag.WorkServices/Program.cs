@@ -25,7 +25,7 @@ namespace ProjetoSeplag.WorkServices
                     IConfiguration configuration = hostContext.Configuration;
                     services.AddDbContext<AplicationContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
                     NativeInjectorBootStrapper.RegisterServices(services);
-                    services.AddHostedService<Worker>();
+                    services.AddHostedService<TimedHostedService>();
                     
                 });
     }

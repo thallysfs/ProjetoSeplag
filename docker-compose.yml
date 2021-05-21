@@ -1,0 +1,59 @@
+version: '3.3'
+
+services:
+    app.service.api:
+        image: thallys/seplagapi
+        container_name: seplagapi
+        ports:
+            - "1080:80"
+            - "1081:443"
+        environment:
+            - ASPNETCORE_URLS=https://+;http://+
+            - ASPNETCORE_HTTPS_PORT=1081
+            - ASPNETCORE_Kestrel__Certificates__Default__Password=approvalcenter_dev
+            - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/cert-aspnetcore.pfx
+        build:
+            context: .
+            dockerfile: ProjetoSeplag.Api/Dockerfile
+        depends_on:
+            - postgres
+        networks:
+            - my-network
+
+    app.service.work:
+        image: thallys/seplagwork
+        container_name: seplagwork
+        build:
+            context: .
+            dockerfile: ProjetoSeplag.WorkServices/Dockerfile
+        depends_on:
+            - postgres
+        networks:
+            - my-network
+
+    postgres:
+        image: postgres
+        environment:
+            POSTGRES_PASSWORD: "docker"
+        volumes:
+            - C:\database:/var/lib/postgresql
+        ports:
+            - "5432:5432"
+        networks:
+            - my-network
+
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "thallys@hotmail.com"
+            PGADMIN_DEFAULT_PASSWORD: "docker"
+        ports:
+            - "16543:80"
+        depends_on:
+            - postgres
+        networks:
+            - my-network
+
+networks:
+  my-network:
+    driver: bridge

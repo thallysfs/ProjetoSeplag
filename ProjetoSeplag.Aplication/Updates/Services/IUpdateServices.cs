@@ -10,7 +10,7 @@ namespace ProjetoSeplag.Aplication.Updates.Services
     {
         Task Insert(UpdatesDto Dto);
 
-        Task<UpdatesDto> GetById(string Id);
+        Task<ValuesDto> GetById(string Id);
 
         Task<List<ValuesDto>> GetAll();
 

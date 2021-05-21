@@ -23,12 +23,12 @@ namespace ProjetoSeplag.Infra.Data.Repository
 
         public async Task<List<UpdateEntity>> GetAll()
         {
-            return await DbSet.ToListAsync();
+            return await DbSet.AsNoTracking().ToListAsync();
         }
 
         public async Task<UpdateEntity> GetById(string Id)
         {
-            return await DbSet.FindAsync(Id);
+            return await DbSet.AsNoTracking().Where(c => c.ID == Id).FirstOrDefaultAsync();
         }
 
         public async Task Insert(UpdateEntity Dto)
