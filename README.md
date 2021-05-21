@@ -16,6 +16,11 @@ Após clonar repositório do GitHub, executar comando para criação dos reposit
 ```bash
   docker-compose up -d
 ```
+Criar banco de dados e tabelas - No prompt do Visual Studio executar o comando:
+```bash
+  Update-Database
+```
+
 Se todos os serviços estiverem ativos e o banco criado, navegar na url:
 ```bash
   https://localhost:1081/api/Updates
