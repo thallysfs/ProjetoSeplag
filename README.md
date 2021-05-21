@@ -2,7 +2,7 @@
 
 ## Iniciando
 ```bash
-#$ git clone https://github.com/thallysfs/ProjetoSeplag.git
+$ git clone https://github.com/thallysfs/ProjetoSeplag.git
 ```
 
 ## Pré-Requisitos:
